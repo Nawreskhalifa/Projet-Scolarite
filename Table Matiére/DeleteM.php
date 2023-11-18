@@ -3,8 +3,10 @@ if (isset($_GET["CodeMatiere"])) {
     $codeMatiere = $_GET["CodeMatiere"];
 
     try {
-        $pdo = new PDO("mysql:host=localhost;dbname=scolarite", "root", "");
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        include_once('connect.php');  // Include the database connection file
+
+        // Use the $conn variable from connect.php
+        $pdo = $conn;
 
         $sql = "DELETE FROM Matieres WHERE `Code Matière` = :codeMatiere";
         $stmt = $pdo->prepare($sql);
@@ -20,8 +22,6 @@ if (isset($_GET["CodeMatiere"])) {
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
     }
-
-    $pdo = null;
 } else {
     echo "Paramètre CodeMatiere non défini.";
 }

@@ -1,4 +1,5 @@
 <?php
+include_once('connect.php');  // Include the database connection file
 
 $codeMatiere = $_POST["CodeMatiere"];
 $newNomMatiere = $_POST["NomMatiere"];
@@ -15,17 +16,15 @@ $newSousCategories = $_POST["SousCategories"];
 $newDateDeb = $_POST["DateDeb"];
 $newDateFin = $_POST["DateFin"];
 
-//verfie le date
+//verifie la date
 if ($newDateFin <= $newDateDeb) {
     echo "Erreur : La date de fin doit être supérieure à la date de début.";
-   
     exit;
 }
 
-$pdo = new PDO("mysql:host=localhost;dbname=scolarite", "root", "");
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-$query = "UPDATE Matieres SET 
+try {
+    $pdo = $conn;
+    $query = "UPDATE Matieres SET 
     `Nom Matière` = :newNomMatiere,
     `Coef Matière` = :newCoefMatiere,
     `Département` = :newDepartement,
@@ -40,7 +39,6 @@ $query = "UPDATE Matieres SET
     `DateDeb` = :newDateDeb,
     `DateFin` = :newDateFin
 WHERE `Code Matière` = :codeMatiere";
-
 
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(":codeMatiere", $codeMatiere, PDO::PARAM_STR);
@@ -58,13 +56,15 @@ $stmt->bindParam(":newSousCategories", $newSousCategories, PDO::PARAM_STR);
 $stmt->bindParam(":newDateDeb", $newDateDeb, PDO::PARAM_STR);
 $stmt->bindParam(":newDateFin", $newDateFin, PDO::PARAM_STR);
 
-if ($stmt->execute()) {
-    echo "La matière a été modifiée avec succès.";
-    header("location: SelectM.php");
-} else {
-    echo "Erreur ";
+    if ($stmt->execute()) {
+        echo "La matière a été modifiée avec succès.";
+        header("location: SelectM.php");
+    } else {
+        echo "Erreur ";
+    }
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
 }
 
 $pdo = null;
-
 ?>
