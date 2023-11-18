@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $searchDate = $_POST["searchDate"];
     $searchCoef = isset($_POST["searchCoef"]) ? $_POST["searchCoef"] : '';
 
-    // Recherche combinée par Nom et Date
+
     $requete = "SELECT * FROM Matieres WHERE 
     (`Nom Matière` LIKE :searchTerm OR :searchTerm = '')
     AND (`Coef Matière` LIKE :searchCoef OR :searchCoef = '')
