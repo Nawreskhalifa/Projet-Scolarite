@@ -51,9 +51,7 @@
         <input type="submit" value="Ajouter Matière">
     </form>
 
-    <?php
-include_once('connect.php');
-
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codeMatiere = $_POST["codeMatiere"];
     $nomMatiere = $_POST["nomMatiere"];
@@ -69,16 +67,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sousCategories = $_POST["sousCategories"];
     $dateDeb = $_POST["dateDeb"];
     $dateFin = $_POST["dateFin"];
-
-    // Vérifier si la date de fin est supérieure à la date de début
-    if ($dateFin <= $dateDeb) {
-        echo "Erreur : La date de fin doit être supérieure à la date de début.";
-        exit; // Arrêter l'exécution du script si la vérification échoue
-    }
+ // Vérifier si la date de fin est supérieure à la date de début
+ if ($dateFin <= $dateDeb) {
+    echo "Erreur : La date de fin doit être supérieure à la date de début.";
+   
+    exit; // Arrêter l'exécution du script si la vérification échoue
+}
 
     try {
-        // Use the $conn variable from connect.php
-        $pdo = $conn;
+        $pdo = new PDO("mysql:host=localhost;dbname=scolarite", "root", "");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = "INSERT INTO Matieres 
             (`Code Matière`, `Nom Matière`, `Coef Matière`, `Département`, `Semestre`, `Option`, 
@@ -109,8 +107,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
     }
+
+    $pdo = null;
 }
 ?>
-
 </body>
 </html>

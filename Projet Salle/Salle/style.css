@@ -1,0 +1,199 @@
+@import url('http://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rowdies', cursive;
+}
+.link_container
+{
+    margin-bottom: 20px;
+    display: flex;
+     /* Set the position to fixed */
+    margin-right: 5px; 
+}
+.link
+{
+    background-color:#a72ce5 ;
+    padding: 20px 30px;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: 0;
+}
+.header-container 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px; /* Adjust padding as needed */
+    background-color: #f0f0f000; /* Add a background color to the header */
+}
+form {
+    display: flex;
+}
+
+input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+}
+
+button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #681075; /* Green color, change it to your preferred color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #8e45a0; /* Darker green color on hover */
+}
+h1
+{
+    margin-bottom: 10px;
+    text-align: center;
+}
+body
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3c6f3;
+    min-height: 100vh;
+    width: 100%;
+}
+main {
+    text-align: center;
+    width: 90%;
+}
+img
+{
+    width: 30px;
+    text-align: center;
+}
+.statut
+{
+    height: 10px;
+}
+th
+{
+    text-align: unset;
+    background-color: rgb(245, 49, 228);
+    color: #fff;
+}
+nav ul
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+nav ul li
+{
+    margin-left: 20px;
+}
+table
+{
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    border-collapse: collapse;
+    width:100% ;
+    table-layout: fixed;
+    border-radius: 10px;
+    overflow:  hidden;
+}
+table a
+{
+    text-align: center;
+}
+.image
+{
+    text-align: center;
+}
+table tr 
+{
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+th, td
+{
+    padding:20px;
+    text-align: center; 
+}
+.message
+{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    margin: 5px 0;
+    color: #000;
+}
+form
+{
+    width:400px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 6px;
+    font: size 14px;
+}
+form input
+{
+    margin: 8px 0 ;
+    padding :15px;
+    border:1px solid #999;
+    border: radius 3px;
+    outline :0;
+}
+form input[ type="submit"]
+{
+    cursor: pointer;
+    background-color: #c46fd9;
+    color: #fff;
+    border: 1px solid #d96f9f;
+}
+.back
+{
+    padding: 15px;
+    text-align: center;
+    border-radius: 3px;
+    margin-top: 8px;
+}
+
+
+.link
+{
+    margin: 20px 0;
+}
+
+[type="checkbox"]
+{
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+
+
+}
+
+@media screen and (max-width: 900px) {
+
+    thead {
+        font-size: 0.9em;
+    }
+    tbody {
+        font-size: 0.8em;
+    }
+    table{
+        min-width: 800px;
+        overflow-x: auto;
+    }
+}

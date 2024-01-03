@@ -1,0 +1,9 @@
+
+CREATE TABLE HeureSup(
+	Session int NOT NULL,
+	MatProf smallint NOT NULL,
+	CI real NULL,
+	TP real NULL,
+	Tot real NULL,
+ )
+
