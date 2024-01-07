@@ -1,8 +1,30 @@
+
+
+
+<?php
+require "connexion.php";
+
+// Fetch sessions
+$sql = "SELECT Sem FROM session";
+$result = $idcon->query($sql);
+$all_sessions = $result->fetchAll(PDO::FETCH_ASSOC);
+
+// Fetch professors
+$sql = "SELECT `Matricule Prof` FROM prof";
+$result = $idcon->query($sql);
+$all_profs = $result->fetchAll(PDO::FETCH_ASSOC);
+
+// Fetch matieres
+$sql = "SELECT `Code Matière` FROM matieres";
+$result = $idcon->query($sql);
+$all_NumMats = $result->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <style>
-        body {
+body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
         }
@@ -53,16 +75,6 @@
             font-size: 18px;
             cursor: pointer;
         }
-        fieldset {
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            padding: 10px;
-            margin-top: 20px;
-        }
-        p {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
         a {
             text-decoration: none; 
             padding: 10px 20px; 
@@ -74,44 +86,46 @@
         a:hover {
             background-color: #0056b3; 
         }
-    </style>
+        </style>
 </head>
 <body>
-<div class="container">
-    <div class="text">
-        <h1 class="">Modifier Un Cellule</h1>
-</div><br><br><br>
+    <div class="container">
+        <h1>Ajouter une Cellule</h1>
+        <form method="POST">
+            <label for="NumCell">NumCell</label>
+            <input type="text" name="NumCell" required><br><br>
 
-<form method="POST" action="">
-        <fieldset>
-            <legend>Nouveau </legend>
-            <p>Veuillez remplir les champs suivants</p>
-            <label>NumCell</label><input type="text" name="NumCell"><br><br>
-            <label>NumProf</label><input type="number" name="NumProf"><br><br>
-            <label>NumMat</label><input type="text" name="NumMat"><br><br>
-            <button type="reset" onclick="resetForm()">Anuuler</button>
-            <button type="submit" name='Enregistrer'>Enregistrer</button>
+            <label for='NumProf'>Matricule Prof</label>
+            <select name="NumProf" required>
+                <?php foreach ($all_profs as $prof): ?>
+                    <option value="<?php echo $prof["Matricule Prof"]; ?>">
+                        <?php echo $prof["Matricule Prof"]; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select><br>
+
+            <label for='NumMat'>NumMat</label>
+            <select name="NumMat" required>
+                <?php foreach ($all_NumMats as $NumMat): ?>
+                    <option value="<?php echo $NumMat["Code Matière"]; ?>">
+                        <?php echo $NumMat["Code Matière"]; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select><br>
+
+            <label for='session'>Session</label>
+            <select name="session" required>
+                <?php foreach ($all_sessions as $session): ?>
+                    <option value="<?php echo $session["Sem"]; ?>">
+                        <?php echo $session["Sem"]; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select><br><br>
+
+            <button type="reset">Annuler</button>
+            <button type="submit" name="Valider">Valider</button>
             <a href="afficherCell.php">Home</a>
-        </fieldset>
-    </form>
-    <script>
-    function resetForm() {
-        document.querySelector('form').reset();
-    }
-</script>
+        </form>
+    </div>
 </body>
 </html>
-
-<?php
-    require "connexion.php";
-
-    if(isset($_POST['Enregistrer']))
-    {
-        $nc=$_POST["NumCell"];
-        $np=$_POST["NumProf"];
-        $nm=$_POST["NumMat"];
-        $req="update cellules set  NumProf= '$np', NumMat= '$nm'  where NumCell= '$nc' ";
-        $idcon->exec($req);
-        echo '<script>alert("Une cellule est modifier.");</script>';
-    }
-?>

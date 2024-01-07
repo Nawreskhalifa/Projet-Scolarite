@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $classes = $classeStmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($classes as $classe) {
-                echo "<option value='{$classe['CodClasse']}'>{$classe['IntClasse']}</option>";
+                echo "<option value='{$classe['CodClasse']}'>{$classe['CodClasse']}</option>";
             }
             ?>
         </select><br>

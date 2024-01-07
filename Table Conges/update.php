@@ -38,6 +38,17 @@
             
             // Close the statement
             mysqli_stmt_close($stmt);
+
+            // Fetch professors
+            $sql = "SELECT `Matricule Prof` FROM prof";
+            $result = mysqli_query($link, $sql);
+
+            // Vérifier si la requête a réussi
+            if ($result) {
+                $all_profs = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            } else {
+                die("ERROR: Could not execute query. " . mysqli_error($link));
+            }
             
             // Close connection
             mysqli_close($link);
@@ -49,8 +60,14 @@
         <form action="update-process.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $param_id; ?>">
             <div class="form-group">
-                <label for="MatriculeProf">MatriculeProf:</label>
-                <input type="text" class="form-control" id="MatriculeProf" name="MatriculeProf" value="<?php echo $MatriculeProf; ?>">
+                <label for='NumProf'>Matricule Prof</label>
+                <select name="NumProf" required>
+                    <?php foreach ($all_profs as $prof): ?>
+                        <option value="<?php echo $prof["Matricule Prof"]; ?>">
+                            <?php echo $prof["Matricule Prof"]; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="DateDeb">DateDeb:</label>
