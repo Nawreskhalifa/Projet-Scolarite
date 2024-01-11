@@ -10,4 +10,6 @@ $link = mysqli_connect(DB_SERVER, DB_USERMatriculeProf, DB_PASSWORD, DB_Matricul
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
+
+
 ?>

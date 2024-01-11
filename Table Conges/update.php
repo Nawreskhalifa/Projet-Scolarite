@@ -1,3 +1,34 @@
+<?php
+// Replace with your actual database credentials
+$host = "localhost";
+$user = "root";
+$password = ""; // Replace with your actual password
+$database = "scolarite";
+
+// Create a connection
+$link = mysqli_connect($host, $user, $password, $database);
+
+// Check the connection
+if (!$link) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Fetch professors
+$sql = "SELECT `Matricule Prof` FROM prof";
+$result = mysqli_query($link, $sql);
+
+// Check if the query was successful
+if ($result) {
+    $all_profs = mysqli_fetch_all($result, MYSQLI_ASSOC);
+} else {
+    die("ERROR: Could not execute query. " . mysqli_error($link));
+}
+
+// Close the connection
+mysqli_close($link);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,17 +69,6 @@
             
             // Close the statement
             mysqli_stmt_close($stmt);
-
-            // Fetch professors
-            $sql = "SELECT `Matricule Prof` FROM prof";
-            $result = mysqli_query($link, $sql);
-
-            // Vérifier si la requête a réussi
-            if ($result) {
-                $all_profs = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            } else {
-                die("ERROR: Could not execute query. " . mysqli_error($link));
-            }
             
             // Close connection
             mysqli_close($link);
@@ -60,8 +80,8 @@
         <form action="update-process.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $param_id; ?>">
             <div class="form-group">
-                <label for='NumProf'>Matricule Prof</label>
-                <select name="NumProf" required>
+                <label for="MatriculeProf">Matricule Prof:</label>
+                <select class="form-control" id="MatriculeProf" name="MatriculeProf" required>
                     <?php foreach ($all_profs as $prof): ?>
                         <option value="<?php echo $prof["Matricule Prof"]; ?>">
                             <?php echo $prof["Matricule Prof"]; ?>

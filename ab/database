@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS `absensg`;
+CREATE TABLE IF NOT EXISTS `absensg` (
+  `NumAbs` int(11) NOT NULL,
+  `MatriculeProf` smallint(6) NOT NULL,
+  `Session` int(11) NOT NULL,
+  `DateAbs` datetime NOT NULL,
+  `Seance` char(10) NOT NULL,
+  `Motif` char(60) DEFAULT NULL,
+  `TypeSeance` char(10) DEFAULT NULL,
+  `CodeClasse` char(9) DEFAULT NULL,
+  `CodeMatiere` char(10) DEFAULT NULL,
+  `Justifier` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`NumAbs`,`MatriculeProf`,`Session`,`DateAbs`,`Seance`),
+  KEY `MatriculeProf` (`MatriculeProf`),
+  KEY `CodeClasse` (`CodeClasse`),
+  KEY `CodeMatiere` (`CodeMatiere`)
+)

@@ -1,30 +1,30 @@
 <?php
-// Établir la connexion à la base de données
+// Replace with your actual database credentials
+$host = "localhost";
+$user = "root";
+$password = ""; // Replace with your actual password
+$database = "scolarite";
 
-define('DB_SERVER', 'localhost');
-define('DB_USERMatriculeProf', 'root');
-define('DB_PASSWORD', '');
-define('DB_MatriculeProf', 'scolarite');
- 
-$link = mysqli_connect(DB_SERVER, DB_USERMatriculeProf, DB_PASSWORD, DB_MatriculeProf);
- 
-// Check connection
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
+// Create a connection
+$link = mysqli_connect($host, $user, $password, $database);
+
+// Check the connection
+if (!$link) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 // Fetch professors
 $sql = "SELECT `Matricule Prof` FROM prof";
 $result = mysqli_query($link, $sql);
 
-// Vérifier si la requête a réussi
+// Check if the query was successful
 if ($result) {
     $all_profs = mysqli_fetch_all($result, MYSQLI_ASSOC);
 } else {
     die("ERROR: Could not execute query. " . mysqli_error($link));
 }
 
-// Fermer la connexion
+// Close the connection
 mysqli_close($link);
 ?>
 
@@ -40,8 +40,8 @@ mysqli_close($link);
         <h2>Create Conge</h2>
         <form action="insert.php" method="POST">
             <div class="form-group">
-                <label for='NumProf'>Matricule Prof</label>
-                <select name="NumProf" required>
+                <label for="MatriculeProf">Matricule Prof:</label>
+                <select class="form-control" id="MatriculeProf" name="MatriculeProf" required>
                     <?php foreach ($all_profs as $prof): ?>
                         <option value="<?php echo $prof["Matricule Prof"]; ?>">
                             <?php echo $prof["Matricule Prof"]; ?>

@@ -43,7 +43,70 @@ $all_NumMats = $result->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Your styles go here -->
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            text-align: left;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+        button[type="submit"] {
+            background-color: #008080;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button[type="reset"] {
+            background-color: #ccc;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        a {
+            text-decoration: none; 
+            padding: 10px 20px; 
+            background-color: #008080; 
+            color: #fff; 
+            border-radius: 5px; 
+            margin: 5px; 
+        }
+        a:hover {
+            background-color: #0056b3; 
+        }
+    </style>
 </head>
 <body>
     <div class="container">
