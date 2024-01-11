@@ -85,6 +85,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <label for="dateAbs">DateAbs:</label>
         <input type="datetime-local" name="dateAbs" required><br>
 
+
+
+
+
+
+
+        
         <label for="seance">Seance:</label>
         <select name="seance">
             <?php
